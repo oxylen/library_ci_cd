@@ -58,5 +58,5 @@ jobs:
 # job : test (environnement du projet)
 # installer cypress
       - name: installer cypress
-        uses: cypress-io/github-action@v7
+        uses: cypress-io/github-action@v6
 # lancer les tests cypress 
