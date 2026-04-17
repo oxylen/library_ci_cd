@@ -21,7 +21,7 @@ jobs:
         image: mysql:8.0
         env:
           MYSQL_ROOT_PASSWORD: rootpw
-          MYSQL_DATABASE: taskdb
+          MYSQL_DATABASE: ci_cd
         ports:
           - 3306:3306
         options: >-
@@ -46,13 +46,17 @@ jobs:
       - name: démarrer le serveur PHP
         run: |
           php -S 127.0.0.1:8000 -t public &
-    
-
-# job : build (environnemt du projet)
-
+      # job : build (environnemt du projet)
+      - name: créer le .env
+        run: |
+          cp .env.docker .env
+          echo 'MYSQL_ROOT_PASSWORD=rootpw'>>.env
+      - name: créer la DB
+        run: |
+          mysql -h 127.0.0.1 -P 3306 -u root -prootpw < db.sql
 # compiler le code
-
 # job : test (environnement du projet)
 # installer cypress
-# lancer les tests cypress
-
+      - name: installer cypress
+        uses: cypress-io/github-action@v7
+# lancer les tests cypress 
