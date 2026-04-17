@@ -59,7 +59,7 @@ jobs:
 # installer cypress
       - name: installer cypress
         uses: cypress-io/github-action@v7
-# lancer les tests cypress
+# lancer les tests cypress 
 
 
 
